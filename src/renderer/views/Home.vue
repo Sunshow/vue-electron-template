@@ -31,11 +31,22 @@
 
 <script lang="ts">
 import Vue from 'vue'
+const { remote } = require('electron')
+import hotkeys from 'hotkeys-js'
 
 enum TEST {}
 
 export default Vue.extend({
   name: 'Home',
+  mounted() {
+    console.log(remote.getCurrentWindow().isKiosk())
+    remote.getCurrentWindow().setKiosk(true)
+    hotkeys('esc', function(event, handler){
+      // Prevent the default refresh event under WINDOWS system
+      event.preventDefault()
+      remote.getCurrentWindow().setKiosk(false)
+    });
+  }
 })
 </script>
 

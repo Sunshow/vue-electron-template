@@ -61,6 +61,7 @@ function createWindow() {
       nodeIntegrationInWorker: false,
       contextIsolation: false,
       webSecurity: false,
+      enableRemoteModule: true
     },
     show: false,
   })
